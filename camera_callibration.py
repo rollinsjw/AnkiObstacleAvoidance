@@ -38,13 +38,6 @@ def create_known_chessboard():
     return corners
 
 
-def write_callibration_info_to_file(camera_matrix, distortion_coefficients):
-    f = open('callibration.txt', 'w')
-    f.write('Camera Matrix' + '\n' + str(camera_matrix) + '\n')
-    f.write('Distortion Coefficients' + '\n' + str(distortion_coefficients))
-    f.close()
-
-
 def calibrate():
 
     object_points = []
@@ -79,7 +72,8 @@ def calibrate():
     return_bool, camera_matrix, distortion_coefficients, rotation_vectors, translation_vectors = cv2.calibrateCamera(
         object_points, image_points, gray_image.shape[::-1],None,None)
 
-    write_callibration_info_to_file(camera_matrix, distortion_coefficients)
+    # Write callibration info to npz file
+    np.savez('callibration', camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
 
 
 
