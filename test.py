@@ -3,9 +3,9 @@ import numpy as np
 
 def test():
 	
-	#original_image = cv2.imread('white_circle.jpg')
+	original_image = cv2.imread('white_circle.jpg')
 
-	pass
+
 
 	#image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
 
