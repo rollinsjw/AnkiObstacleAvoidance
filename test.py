@@ -7,21 +7,21 @@ def test():
 
 	image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
 
-	im2, contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+	# im2, contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-	print contours
+	# print contours
 
-	contour = contours[0]
+	# contour = contours[0]
 
-	rect = cv2.minAreaRect(contour)
-	box = cv2.boxPoints(rect)
-	box = np.int0(box)
-	cv2.drawContours(image,[box],0,(0,0,255),2)
+	# rect = cv2.minAreaRect(contour)
+	# box = cv2.boxPoints(rect)
+	# box = np.int0(box)
+	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
 
-	cv2.imshow('image', image)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
+	# cv2.imshow('image', image)
+	# cv2.waitKey(0)
+	# cv2.destroyAllWindows()
 
 
 
