@@ -17,8 +17,30 @@ def test():
 	# print green_hist
 	# print red_hist
 
-	threshold_image = np.zeros((300,300,3),np.uint8)
-	print threshold_image
+	frame = cv2.imread("greensquare.jpg")
+	rows, cols, channels = frame.shape
+	threshold_image_pixels = []
+
+	for i in range(rows):
+		threshold_row = []
+		for j in range(cols):
+			pixel = frame[i][j]  # pixel = [blue, green, red]
+			blue = pixel[0]
+			green = pixel[1]
+			red = pixel[2]
+			
+			if (green >= 10):
+				threshold_row.append([255, 255, 255])
+			else:
+				threshold_row.append([0, 0, 0])
+		threshold_image_pixels.append(threshold_row)
+
+	dt = np.dtype('f8')
+	threshold_image = np.array(threshold_image_pixels, dtype=dt)
+
+	cv2.imshow('image', threshold_image)
+	cv2.waitKey(0)
+	cv2.destroyAllWindows()
 
 
 
