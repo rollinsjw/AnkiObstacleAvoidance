@@ -10,10 +10,10 @@ def main():
 	calibrate()
 
 	# Create and save histogram for obstacles
+	config = Config()
 	obstacle_image_name = ''
 	hist_builder = HistogramBuilder()
-	hist = hist_builder.create_historgram(obstacle_image_name)
-	config = Config()
+	hist = hist_builder.create_historgram(obstacle_image_name, config.get_obstacle_hist_bucket_size())
 	np.savez(config.get_obstacle_hist_filename(), obstacle_histogram=hist)
 
 
