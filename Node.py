@@ -9,3 +9,7 @@ class Node(object):
     # adds a child to the node
     def addChild(self, child):
         self.children.append(child)
+
+    def addChildren(self, children):
+        for child in children:
+            self.children.append(child)
