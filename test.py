@@ -17,7 +17,7 @@ def test():
 	# print green_hist
 	# print red_hist
 
-	frame = cv2.imread("greensquare.jpg")
+	frame = cv2.imread("New_Picture.png")
 	rows, cols, channels = frame.shape
 	threshold_image_pixels = []
 
@@ -29,7 +29,7 @@ def test():
 			green = pixel[1]
 			red = pixel[2]
 			
-			if (green >= 10):
+			if (green >= 30):
 				threshold_row.append([255, 255, 255])
 			else:
 				threshold_row.append([0, 0, 0])
