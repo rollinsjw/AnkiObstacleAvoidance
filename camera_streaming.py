@@ -7,14 +7,14 @@ def stream():
 	vid = cv2.VideoCapture(0)
 
 	# Check that capture was initialized
-	if (!vid.isOpened()):
+	if not vid.isOpened():
 		vid.open()
 
 	counter = 0
 
 	while True:
 		return_value, frame = vid.read()
-		print "read frame"
+		print("read frame")
 		time.sleep(5)
 
 		if counter > 7:
