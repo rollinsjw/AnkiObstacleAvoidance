@@ -34,6 +34,8 @@ class Simulation:
 			#TODO: call detect cars and detect obstacles from object tracking
 			#TODO: use control to change state
 			#TODO: send anki commands
+			#TODO: convert to ego centric coordinates
+			#TODO: instantiate ControlSystem instance
+			#TODO: iterate through cars calling ControlSystem.generateTree for each car
 
 		vid.release()
-
