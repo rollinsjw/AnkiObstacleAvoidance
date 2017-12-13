@@ -31,7 +31,7 @@ def test():
 			
 			print pixel
 
-			if (green >= 30):
+			if (green >= 30 and green <= 100):
 				threshold_row.append([255, 255, 255])
 			else:
 				threshold_row.append([0, 0, 0])
