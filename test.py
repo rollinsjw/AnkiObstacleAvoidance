@@ -29,6 +29,8 @@ def test():
 			green = pixel[1]
 			red = pixel[2]
 			
+			print pixel
+
 			if (green >= 30):
 				threshold_row.append([255, 255, 255])
 			else:
