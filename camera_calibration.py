@@ -26,7 +26,7 @@ BOARD_WIDTH = 6 #number of corners
 # Corner refinement termination criteria
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
-def create_known_chessboard():
+def __create_known_chessboard():
 
     chessboard_size = (BOARD_HEIGHT, BOARD_WIDTH)
 
@@ -47,7 +47,7 @@ def calibrate():
 
     images = glob.glob('*.jpg') # List of all filenames ending in .jpg in current directory
 
-    known_corners = create_known_chessboard()
+    known_corners = __create_known_chessboard()
 
     for filename in images:
         image = cv2.imread(filename)  # Load image
@@ -77,8 +77,4 @@ def calibrate():
     # Write callibration info to npz file
     np.savez(config.get_calibration_filename(), camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
 
-
-
-if __name__ == "__main__":
-    calibrate()
 

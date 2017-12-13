@@ -8,3 +8,6 @@ class Config:
 
 	def get_calibration_filename():
 		return self.config.get('file_names', 'calibration_file')
+
+	def get_obstacle_hist_filename():
+		return self.config.get('file_names', 'obstacle_histogram_file')
