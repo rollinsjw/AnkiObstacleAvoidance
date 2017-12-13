@@ -7,7 +7,10 @@ class Config:
 		self.config.read('properties.ini')
 
 	def get_calibration_filename():
-		return self.config.get('file_names', 'calibration_file')
+		return self.config.get('calibration', 'file_name')
 
 	def get_obstacle_hist_filename():
-		return self.config.get('file_names', 'obstacle_histogram_file')
+		return self.config.get('obstacle_histogram', 'file_name')
+
+	def get_obstacle_hist_bucket_size():
+		return int(self.config.get('obstacle_histogram', 'bucket_size'))
