@@ -6,15 +6,17 @@ from State import State
     #manhattanDistanceToObstacles
     #numberOfIntervals
     #timeInterval
+    #comfyDistanceToObstacle
 
 class ControlSystem(object):
 
     #initialization function that doens't really do anything
-    def __init__(self, timeInterval, numberOfIntervals, manhattanDistanceToObstacle, lanes):
+    def __init__(self, timeInterval, numberOfIntervals, manhattanDistanceToObstacle, lanes, comfyDistanceToObstacle):
         self.timeInterval = timeInterval
         self.numberOfIntervals = numberOfIntervals
         self.manhattanDistanceToObstacle = manhattanDistanceToObstacle
         self.lanes = lanes
+        self.comfyDistanceToObstacle = comfyDistanceToObstacle
 
     # initialize the tree
     def startTree(carState):
@@ -58,23 +60,27 @@ class ControlSystem(object):
 
     def getNextState(carState, lane):
         carState.set_currentLane(lane)
-        carState.set_
+        # TODO: use directionVector to calculate an estimate of where the car will be
+        position =
+        carState.set_currentPosition()
 
     #generate the controls used to get from one state to another
     def getControls(carState, futureState):
+        if futureState.get_currentLane = carState.get_currentLane:
+            return []
+        else:
+            return [futureState.get_currentLane]
 
     def scoreCurrentState(carState):
+        if getObstaclesWithinDistance(carState, self.comfyDistanceToObstacle)
 
-    #this is done with manhattan distance in order to minimize computational effort
+
     #TODO: is calculating the euclidian distance only marginally slower?
     #This function finds all of the obstacles within a certain distance to the car
-    def getObstaclesWithinDistance(carState):
+    def getObstaclesWithinDistance(carState, distance):
         obstaclesWithinDistance = []
         for obstacle in carState.objectLocations:
-            if(obstacle[0] + obstacle[1] > self.manhattanDistanceToObstacle):
+            # check if the object is within a euclidian distance to the object
+            if(Math.sqrt(obstacle[0]^2 + obstacle[1]^2) > distance):
                 obstaclesWithinDistance.append(obstacle)
         return obstaclesWithinDistance
-
-    def calculateEuclidianDistance(obstacleCoords):
-        #TODO: find the syntax for this
-        return Math.sqrt(obstacleCoords[0]**2 + obstacleCoords[1]**2)
