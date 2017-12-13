@@ -11,6 +11,7 @@ class State:
             self.objectLocations = data["objectLocations"]
             self.isCar = data["isCar"]
             self.currentPosition = data["currentPosition"]
+            self.directionVector = data["directionVector"]
 
     #TODO: function to get location of other objects relative to this object
 
@@ -63,3 +64,8 @@ class State:
         return self.currentPosition
     def set_currentPosition(self, position):
         self.currentPosition = position
+
+    def get_directionVector(self):
+        return self.directionVector
+    def set_directionVector(self, vector):
+        self.directionVector = vector
