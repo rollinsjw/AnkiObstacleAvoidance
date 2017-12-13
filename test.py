@@ -2,45 +2,22 @@ import cv2
 import numpy as np
 
 def test():
-	#image = cv2.imread("red.png")
-	# blue_hist = cv2.calcHist([image], [0], None, [32], [0, 256])
-	# green_hist = cv2.calcHist([image], [1], None, [32], [0, 256])
-	# red_hist = cv2.calcHist([image], [2], None, [32], [0, 256])
-	# hist = cv2.calcHist([image], [0, 1, 2], None, [64, 64, 64], [0, 256, 0, 256, 0, 256])
-	# print hist
-	# print len(hist)
-	# print hist[0]
-	# print len(hist)
-	# print hist[0][0]
-	# print len(hist[0][0])
-	# print blue_hist
-	# print green_hist
-	# print red_hist
+	
+	image = cv2.imread('white_circle.jpg')
 
-	frame = cv2.imread("New_Picture.png")
-	rows, cols, channels = frame.shape
-	threshold_image_pixels = []
+	im2, contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-	for i in range(rows):
-		threshold_row = []
-		for j in range(cols):
-			pixel = frame[i][j]  # pixel = [blue, green, red]
-			blue = pixel[0]
-			green = pixel[1]
-			red = pixel[2]
-			
-			print pixel
+	print contours
 
-			if (green >= 30 and blue <= 200 and red <= 200):
-				threshold_row.append([255, 255, 255])
-			else:
-				threshold_row.append([0, 0, 0])
-		threshold_image_pixels.append(threshold_row)
+	contour = contours[0]
 
-	dt = np.dtype('f8')
-	threshold_image = np.array(threshold_image_pixels, dtype=dt)
+	rect = cv2.minAreaRect(contour)
+	box = cv2.boxPoints(rect)
+	box = np.int0(box)
+	cv2.drawContours(image,[box],0,(0,0,255),2)
 
-	cv2.imshow('image', threshold_image)
+
+	cv2.imshow('image', image)
 	cv2.waitKey(0)
 	cv2.destroyAllWindows()
 
