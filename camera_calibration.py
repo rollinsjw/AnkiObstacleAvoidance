@@ -67,7 +67,7 @@ def calibrate():
 
             cv2.imwrite('pattern'+filename, pattern_image)
 
-            cv2.imshow('image', pattern_image)
+            cv2.imshow('image', gray_image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
