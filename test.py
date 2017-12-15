@@ -21,10 +21,10 @@ def test():
 	# box = np.int0(box)
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
-	for contour in contours:
+	contour = contours[-1]
 
-		x,y,w,h = cv2.boundingRect(contour)
-		cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
+	x,y,w,h = cv2.boundingRect(contour)
+	cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
 
 
 
