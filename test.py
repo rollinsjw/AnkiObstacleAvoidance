@@ -21,15 +21,15 @@ def test():
 	# box = np.int0(box)
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
-
+	max_rectangle = (0, 0, 0 , 0)
 	for i in range(len(contours)):	
-
 		x,y,w,h = cv2.boundingRect(contours[i])
-		if w > 10 and h > 10:
-			cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
-			print i
-	print len(contours)
+		if w*h > max_rectangle[2]*max_rectangle[3]:
+			max_rectangle = (x, y, w, h)
 
+	x,y,w,h = max_rectangle
+	cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
+		
 
 	cv2.imshow('image', original_image)
 	cv2.waitKey(0)
