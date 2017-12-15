@@ -26,7 +26,7 @@ def test():
 
 		x,y,w,h = cv2.boundingRect(contours[i])
 		if w > 40 and h > 40:
-			cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
+			cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
 			print i
 	print len(contours)
 
