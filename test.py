@@ -11,12 +11,12 @@ def test():
 
 	print contours
 
-	# contour = contours[0]
+	contour = contours[0]
 
-	# rect = cv2.minAreaRect(contour)
-	# box = cv2.boxPoints(rect)
-	# box = np.int0(box)
-	# cv2.drawContours(image,[box],0,(0,0,255),2)
+	rect = cv2.minAreaRect(contour)
+	box = cv2.boxPoints(rect)
+	box = np.int0(box)
+	cv2.drawContours(image,[box],0,(0,0,255),2)
 
 
 	cv2.imshow('image', image)
