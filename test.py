@@ -21,10 +21,14 @@ def test():
 	# box = np.int0(box)
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
-	contour = contours[0]
 
-	x,y,w,h = cv2.boundingRect(contour)
-	cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
+	for i in range(len(contours)):	
+
+		x,y,w,h = cv2.boundingRect(contour)
+		if w > 40 and h > 40:
+			cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
+			print i
+	print len(contours)
 
 
 	cv2.imshow('image', original_image)
