@@ -84,7 +84,7 @@ def calibrate(config):
     np.savez(config.get_calibration_filename(), camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
 
 if __name__ == "__main__":
-    config = Config()
+    config = config.Config()
     calibrate(config)
 
 
