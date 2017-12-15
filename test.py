@@ -22,7 +22,7 @@ def test():
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
 	x,y,w,h = cv2.boundingRect(contour)
-	cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,255),2)
+	cv2.rectangle(image,(x,y),(x+100,y+100),(0,0,255),7)
 
 	print "Drew rectangle"
 	print x
