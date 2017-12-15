@@ -18,11 +18,11 @@ class ObjectTracker:
 	def detect_obstacles(frame):
 
 		"""
-		:returns: list of list where each sublist contains pixel coordinates of corners of min rectangles surrounding an obstacle
+		:returns: list of lists where each sublist contains pixel coordinates of corners of min rectangle surrounding an obstacle
 		"""
 		
 		rows, cols, channels = frame.shape
-		threshold_grid = []
+		threshold_image_pixels = []
 
 		for i in range(rows):
 			threshold_row = []
@@ -31,12 +31,32 @@ class ObjectTracker:
 				blue = pixel[0]
 				green = pixel[1]
 				red = pixel[2]
-				pixel_frequency = self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size]
-				if (pixel_frequency >= threshold):
-					threshold_row.append(1)
+
+				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= ): #TODO
+					threshold_row.append([255, 255, 255])
 				else:
-					threshold_row.append(0)
-			threshold_grid.append(threshold_row)
+					threshold_row.append([0, 0, 0])
+			threshold_image_pixels.append(threshold_row)
+
+		dt = np.dtype('f8')
+		threshold_image = np.array(threshold_image_pixels, dtype=dt)
+
+		image = cv2.cvtColor(threshold_image, cv2.COLOR_BGR2GRAY)
+
+		contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+		max_rectangle = (0, 0, 0 , 0)
+		for i in range(len(contours)):	
+			x,y,w,h = cv2.boundingRect(contours[i])
+			if w*h > max_rectangle[2]*max_rectangle[3]:
+				max_rectangle = (x, y, w, h)
+
+		#x,y,w,h = max_rectangle
+		
+		#cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
+
+		return max_rectangle
+	
 
 
 

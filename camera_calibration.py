@@ -18,7 +18,7 @@ The purpose of this module is to:
 
 '''
 
-SQUARE_SIZE = 0 #meters
+SQUARE_SIZE = .0245 #meters
 BOARD_HEIGHT = 9 #number of corners
 BOARD_WIDTH = 6 #number of corners
 
@@ -45,7 +45,7 @@ def calibrate():
     object_points = []
     image_points = []
 
-    images = glob.glob('*.jpg') # List of all filenames ending in .jpg in current directory
+    images = glob.glob('calibration_images/*.jpg') # List of all filenames ending in .jpg in current directory
 
     known_corners = __create_known_chessboard()
 
@@ -76,5 +76,8 @@ def calibrate():
 
     # Write callibration info to npz file
     np.savez(config.get_calibration_filename(), camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
+
+if __name__ == "__main__":
+    calibrate()
 
 
