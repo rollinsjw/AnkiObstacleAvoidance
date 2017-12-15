@@ -65,7 +65,7 @@ def calibrate():
 
             print corners
 
-            pattern_image = cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), refined_corners, is_chessboard_found)
+            pattern_image = cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
            # cv2.imwrite('pattern'+filename, pattern_image)
 
