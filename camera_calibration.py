@@ -19,9 +19,9 @@ The purpose of this module is to:
 
 '''
 
-SQUARE_SIZE = .0245 #meters
-BOARD_HEIGHT = 9 #number of corners
-BOARD_WIDTH = 6 #number of corners
+SQUARE_SIZE = .037 #meters
+BOARD_HEIGHT = 22 #number of corners
+BOARD_WIDTH = 14 #number of corners
 
 
 # Corner refinement termination criteria
@@ -46,7 +46,7 @@ def calibrate(config):
     object_points = []
     image_points = []
 
-    images = glob.glob('calibration_images/*.jpg') # List of all filenames ending in .jpg in current directory
+    images = glob.glob('calibration_images2/*.jpg') # List of all filenames ending in .jpg in current directory
 
     known_corners = __create_known_chessboard()
 
