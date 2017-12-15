@@ -66,11 +66,11 @@ def calibrate(config):
 
             print corners
 
-            pattern_image = cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
+            cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
-            cv2.imwrite('pattern'+filename, pattern_image)
+            #cv2.imwrite('pattern'+filename, image)
 
-            cv2.imshow('image', pattern_image)
+            cv2.imshow('image', image)
             cv2.waitKey(0)
             cv2.destroyAllWindows()
 
