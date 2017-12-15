@@ -13,13 +13,16 @@ def test():
 
 	contour = contours[0]
 
-	rect = cv2.minAreaRect(contour)
+	# rect = cv2.minAreaRect(contour)
 
-	print rect
+	# print rect
 
 	# box = cv2.cv.boxPoints(rect)
 	# box = np.int0(box)
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
+
+	x,y,w,h = cv2.boundingRect(contour)
+	cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,0),2)
 
 
 	cv2.imshow('image', image)
