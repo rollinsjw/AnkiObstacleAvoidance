@@ -24,7 +24,7 @@ def test():
 	for contour in contours:
 
 		x,y,w,h = cv2.boundingRect(contour)
-		cv2.rectangle(original_image,(x,y),(x+100,y+100),(0,0,255),7)
+		cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),4)
 
 
 
