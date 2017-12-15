@@ -1,7 +1,8 @@
 import cv2
 import glob
 import numpy as np
-import config
+
+from config import Config
 
 
 '''
@@ -40,7 +41,7 @@ def __create_known_chessboard():
     return corners
 
 
-def calibrate():
+def calibrate(config):
 
     object_points = []
     image_points = []
@@ -67,11 +68,11 @@ def calibrate():
 
             pattern_image = cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
-           # cv2.imwrite('pattern'+filename, pattern_image)
+            cv2.imwrite('pattern'+filename, pattern_image)
 
-            # cv2.imshow('image', gray_image)
-            # cv2.waitKey(0)
-            # cv2.destroyAllWindows()
+            cv2.imshow('image', pattern_image)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()
 
         else:
             print "ERROR: did not find chessboard in file " + filename
@@ -83,6 +84,7 @@ def calibrate():
     np.savez(config.get_calibration_filename(), camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
 
 if __name__ == "__main__":
-    calibrate()
+    config = Config()
+    calibrate(config)
 
 
