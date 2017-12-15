@@ -5,11 +5,11 @@ def test():
 
 	original_image = cv2.imread('white_circle.jpg')
 
- 	image = cv2.cvtColor(original_image, cv2.COLOR_BGR2HSV)
+ 	image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
 
-	# im2, contours, hierarchy = cv2.findContours(original_image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+	im2, contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-	# print contours
+	print contours
 
 	# contour = contours[0]
 
