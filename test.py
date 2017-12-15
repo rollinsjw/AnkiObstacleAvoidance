@@ -14,7 +14,7 @@ def test():
 	contour = contours[0]
 
 	rect = cv2.minAreaRect(contour)
-	box = cv2.boxPoints(rect)
+	box = cv2.cv.boxPoints(rect)
 	box = np.int0(box)
 	cv2.drawContours(image,[box],0,(0,0,255),2)
 
