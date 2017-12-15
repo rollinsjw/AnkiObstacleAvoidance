@@ -56,6 +56,8 @@ def calibrate():
         # Find the chess board corners
         is_chessboard_found, corners = cv2.findChessboardCorners(gray_image, (BOARD_HEIGHT, BOARD_WIDTH), None)
 
+        print corners
+
         if is_chessboard_found:
             
             object_points.append(known_corners)
