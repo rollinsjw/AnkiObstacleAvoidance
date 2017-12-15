@@ -9,14 +9,17 @@ def test():
 
 	contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-	print contours
+	#print contours
 
 	contour = contours[0]
 
 	rect = cv2.minAreaRect(contour)
-	box = cv2.cv.boxPoints(rect)
-	box = np.int0(box)
-	cv2.drawContours(image,[box],0,(0,0,255),2)
+
+	print rect
+
+	# box = cv2.cv.boxPoints(rect)
+	# box = np.int0(box)
+	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
 
 	cv2.imshow('image', image)
