@@ -11,7 +11,7 @@ def test():
 
 	#print contours
 
-	contour = contours[0]
+	#contour = contours[0]
 
 	# rect = cv2.minAreaRect(contour)
 
@@ -21,14 +21,11 @@ def test():
 	# box = np.int0(box)
 	# cv2.drawContours(image,[box],0,(0,0,255),2)
 
-	x,y,w,h = cv2.boundingRect(contour)
-	cv2.rectangle(original_image,(x,y),(x+100,y+100),(0,0,255),7)
+	for contour in contours:
 
-	print "Drew rectangle"
-	print x
-	print y
-	print w
-	print h
+		x,y,w,h = cv2.boundingRect(contour)
+		cv2.rectangle(original_image,(x,y),(x+100,y+100),(0,0,255),7)
+
 
 	cv2.imshow('image', original_image)
 	cv2.waitKey(0)
