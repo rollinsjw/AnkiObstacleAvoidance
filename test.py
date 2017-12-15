@@ -7,7 +7,7 @@ def test():
 
  	image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
 
-	contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+	contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
 	#print contours
 
