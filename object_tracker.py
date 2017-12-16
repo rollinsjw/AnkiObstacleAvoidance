@@ -34,7 +34,7 @@ class ObjectTracker:
 				green = pixel[1]
 				red = pixel[2]
 
-				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 3):
+				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 2):
 					threshold_row.append([255, 255, 255])
 				else:
 					threshold_row.append([0, 0, 0])
@@ -43,7 +43,7 @@ class ObjectTracker:
 		dt = np.dtype('f8')
 		threshold_image = np.array(threshold_image_pixels, dtype=dt)
 
-	#	image = cv2.cvtColor(threshold_image, cv2.COLOR_BGR2GRAY)
+		image = cv2.cvtColor(threshold_image, cv2.COLOR_BGR2GRAY)
 
 		# contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
