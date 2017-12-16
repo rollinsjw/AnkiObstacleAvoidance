@@ -5,7 +5,7 @@ import numpy as np
 
 class FrameProcessor:
 
-	def __init__(config):
+	def __init__(self, config):
 
 		# Load camera matrix and distortion coefficients from camera calibration
 		self.calibration_npz_file = np.load(config.get_calibration_filename() + ".npz")
