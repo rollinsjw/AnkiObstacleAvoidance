@@ -1,11 +1,13 @@
 import cv2
 import numpy as np
 
+from config import Config
 from object_tracker import ObjectTracker
 
 def test():
 
-	ot = ObjectTracker()
+	config = Config()
+	ot = ObjectTracker(config)
 
 	im = cv2.imread('obstacles.jpg')
 
