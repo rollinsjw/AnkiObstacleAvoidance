@@ -43,6 +43,8 @@ class ObjectTracker:
 		dt = np.dtype('f8')
 		threshold_image = np.array(threshold_image_pixels, dtype=dt)
 
+		print threshold_image.shape
+
 		image = cv2.cvtColor(threshold_image, cv2.COLOR_BGR2GRAY)
 
 		# contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
