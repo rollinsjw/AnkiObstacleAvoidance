@@ -2,7 +2,7 @@ import numpy as np
 
 from camera_calibration import calibrate
 from config import Config
-from histogram import HistogramBuilder
+from histogram_builder import HistogramBuilder
 
 def main():
 
