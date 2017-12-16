@@ -70,6 +70,8 @@ def calibrate(config):
 
             cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
+            print 'drawncorners/'+str(count)+'.jpg'
+
             cv2.imwrite('drawncorners/'+str(count)+'.jpg', image)
 
             count += 1
