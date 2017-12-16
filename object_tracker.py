@@ -56,7 +56,7 @@ class ObjectTracker:
 		for i in range(len(contours)):	
 			x,y,w,h = cv2.boundingRect(contours[i])
 			if w>10 and h>10:
-				cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,255),2)
+				cv2.rectangle(frame,(x,y),(x+w,y+h),(0,0,255),2)
 				rect = Rectangle()
 				rect.top_left = (x, y)
 				rect.top_right = (x+w, y)
