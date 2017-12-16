@@ -50,7 +50,7 @@ def calibrate(config):
 
     known_corners = __create_known_chessboard()
 
-    print images
+    count = 0
 
     for filename in images:
         image = cv2.imread(filename)  # Load image
@@ -70,7 +70,9 @@ def calibrate(config):
 
             cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
-            cv2.imwrite('pattern'+filename, image)
+            cv2.imwrite('pattern'+str(count), image)
+
+            count += 1
 
             # cv2.imshow('image', image)
             # cv2.waitKey(0)
