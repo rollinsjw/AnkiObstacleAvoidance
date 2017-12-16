@@ -34,7 +34,7 @@ class ObjectTracker:
 				green = pixel[1]
 				red = pixel[2]
 
-				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 4):
+				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 3):
 					threshold_row.append([255, 255, 255])
 				else:
 					threshold_row.append([0, 0, 0])
