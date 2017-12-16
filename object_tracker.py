@@ -49,20 +49,20 @@ class ObjectTracker:
 
 		image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-		# contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+		contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-		# object_rectangles = []
+		object_rectangles = []
 		
-		# for i in range(len(contours)):	
-		# 	x,y,w,h = cv2.boundingRect(contours[i])
-		# 	if w>10 and h>10:
-		# 		cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
-		# 		rect = Rectangle()
-		# 		rect.top_left = (x, y)
-		# 		rect.top_right = (x+w, y)
-		# 		rect.bottom_left = (x, y+h)
-		# 		rect.bottom_right = (x+w, y+h)
-		# 		object_rectangles.append(rect)
+		for i in range(len(contours)):	
+			x,y,w,h = cv2.boundingRect(contours[i])
+			if w>10 and h>10:
+				cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,255),2)
+				rect = Rectangle()
+				rect.top_left = (x, y)
+				rect.top_right = (x+w, y)
+				rect.bottom_left = (x, y+h)
+				rect.bottom_right = (x+w, y+h)
+				object_rectangles.append(rect)
 
 		cv2.imshow('image', image)
 		cv2.waitKey(0)
