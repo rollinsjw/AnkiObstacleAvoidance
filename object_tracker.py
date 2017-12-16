@@ -65,7 +65,7 @@ class ObjectTracker:
 				rect.bottom_right = (x+w, y+h)
 				object_rectangles.append(rect)
 
-		cv2.imshow('image', image)
+		cv2.imshow('image', frame)
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
 				
