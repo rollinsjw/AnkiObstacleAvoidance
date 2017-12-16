@@ -34,7 +34,7 @@ class ObjectTracker:
 				green = pixel[1]
 				red = pixel[2]
 
-				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= ): #TODO
+				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 4):
 					threshold_row.append([255, 255, 255])
 				else:
 					threshold_row.append([0, 0, 0])
@@ -45,27 +45,27 @@ class ObjectTracker:
 
 		image = cv2.cvtColor(threshold_image, cv2.COLOR_BGR2GRAY)
 
-		contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+		# contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-		object_rectangles = []
+		# object_rectangles = []
 		
-		for i in range(len(contours)):	
-			x,y,w,h = cv2.boundingRect(contours[i])
-			if w>10 and h>10:
-				cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
-				rect = Rectangle()
-				rect.top_left = (x, y)
-				rect.top_right = (x+w, y)
-				rect.bottom_left = (x, y+h)
-				rect.bottom_right = (x+w, y+h)
-				object_rectangles.append(rect)
+		# for i in range(len(contours)):	
+		# 	x,y,w,h = cv2.boundingRect(contours[i])
+		# 	if w>10 and h>10:
+		# 		cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
+		# 		rect = Rectangle()
+		# 		rect.top_left = (x, y)
+		# 		rect.top_right = (x+w, y)
+		# 		rect.bottom_left = (x, y+h)
+		# 		rect.bottom_right = (x+w, y+h)
+		# 		object_rectangles.append(rect)
 
-		cv2.imshow('image', original_image)
+		cv2.imshow('image', image)
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
 				
 
-		return object_rectangles
+		# return object_rectangles
 	
 
 

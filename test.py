@@ -1,26 +1,15 @@
 import cv2
 import numpy as np
 
+from object_tracker import ObjectTracker
+
 def test():
 
-	original_image = cv2.imread('white_circle.jpg')
+	ot = ObjectTracker()
 
- 	image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
+	im = cv2.imread('obstacles.jpg')
 
-	contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-	max_rectangle = (0, 0, 0 , 0)
-	for i in range(len(contours)):	
-		x,y,w,h = cv2.boundingRect(contours[i])
-		if w*h > max_rectangle[2]*max_rectangle[3]:
-			max_rectangle = (x, y, w, h)
-
-	x,y,w,h = max_rectangle
-	cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
-		
-	cv2.imshow('image', original_image)
-	cv2.waitKey(0)
-	cv2.destroyAllWindows()
+	ot.detect_obstacles(im)
 
 
 
