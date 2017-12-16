@@ -81,7 +81,7 @@ def calibrate(config):
     return_bool, camera_matrix, distortion_coefficients, rotation_vectors, translation_vectors = cv2.calibrateCamera(object_points, image_points, gray_image.shape[::-1],None,None)
 
     # Write callibration info to npz file
-    np.savez(config.get_calibration_filename(), camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
+    np.savez(config.get_calibration_filename() + ".npz", camera_matrix=camera_matrix, distortion_coefficients=distortion_coefficients)
 
 if __name__ == "__main__":
     c = Config()
