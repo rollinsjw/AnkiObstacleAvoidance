@@ -43,7 +43,7 @@ class ObjectTracker:
 
 		gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-		cv2.imwrite('thresh_obstacles.jpg', gray_image)
+		cv2.imwrite('thresh_obstacles2.jpg', gray_image)
 
 		contours, hierarchy = cv2.findContours(gray_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -61,7 +61,7 @@ class ObjectTracker:
 				rect.bottom_right = (x+w, y+h)
 				object_rectangles.append(rect)
 
-		cv2.imwrite('obstacles_found.jpg', image)
+		cv2.imwrite('obstacles_found2.jpg', image)
 
 		cv2.imshow('image', image)
 		cv2.waitKey(0)

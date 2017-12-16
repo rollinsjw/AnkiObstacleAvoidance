@@ -11,12 +11,12 @@ def test():
 
 	config = Config()
 
-	im = cv2.imread('obstacles.jpg')
+	im = cv2.imread('obstacles2.jpg')
 
 	fp = FrameProcessor(config)
 	undistorted_image = fp.undistort(im)
 
-	cv2.imwrite('undistorted_image.jpg', undistorted_image)
+	cv2.imwrite('undistorted_image2.jpg', undistorted_image)
 
 	ot = ObjectTracker(config)
 
