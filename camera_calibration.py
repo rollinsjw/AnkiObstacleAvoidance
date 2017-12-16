@@ -64,15 +64,15 @@ def calibrate(config):
             cv2.cornerSubPix(gray_image, corners, (11,11), (-1,-1), criteria)
             image_points.append(corners)
 
-            print corners
+            #print corners
 
             cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
-            #cv2.imwrite('pattern'+filename, image)
+            cv2.imwrite('pattern'+filename, image)
 
-            cv2.imshow('image', image)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            # cv2.imshow('image', image)
+            # cv2.waitKey(0)
+            # cv2.destroyAllWindows()
 
         else:
             print "ERROR: did not find chessboard in file " + filename
