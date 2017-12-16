@@ -1,6 +1,7 @@
 import cv2
 import glob
 import numpy as np
+import os
 
 from config import Config
 
@@ -59,6 +60,8 @@ def calibrate(config):
         # Find the chess board corners
         is_chessboard_found, corners = cv2.findChessboardCorners(gray_image, (BOARD_HEIGHT, BOARD_WIDTH), None)
 
+        
+
         if is_chessboard_found:
             
             object_points.append(known_corners)
@@ -70,9 +73,7 @@ def calibrate(config):
 
             cv2.drawChessboardCorners(image, (BOARD_HEIGHT, BOARD_WIDTH), corners, is_chessboard_found)
 
-            print 'drawncorners/'+str(count)+'.jpg'
-
-            cv2.imwrite('drawncorners/'+str(count)+'.jpg', image)
+            cv2.imwrite(os.path.join(os.getcwd(), 'drawncorners/'+str(count)+'.jpg'), image)
 
             count += 1
 
