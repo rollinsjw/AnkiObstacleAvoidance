@@ -40,7 +40,7 @@ class ObjectTracker:
 					threshold_row.append([0, 0, 0])
 			threshold_image_pixels.append(threshold_row)
 
-		dt = np.dtype('f8')
+		dt = np.dtype('int8')
 		threshold_image = np.array(threshold_image_pixels, dtype=dt)
 
 		print threshold_image.shape
