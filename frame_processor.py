@@ -2,7 +2,6 @@ import cv2
 from config import Config
 import numpy as np
 
-from histogram_building
 
 class FrameProcessor:
 
