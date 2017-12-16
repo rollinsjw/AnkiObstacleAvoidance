@@ -37,19 +37,13 @@ class ObjectTracker:
 				red = pixel[2]
 
 				if (self.obstacle_histogram[blue/self.hist_bucket_size][green/self.hist_bucket_size][red/self.hist_bucket_size] >= 4):
-					# threshold_row.append([255, 255, 255])
 					frame[i][j] = [255, 255, 255]
 				else:
-					#threshold_row.append([0, 0, 0])
 					frame[i][j] = [0, 0, 0]
-			#threshold_image_pixels.append(threshold_row)
-
-		#dt = np.dtype('uint32')
-		#threshold_image = np.array(threshold_image_pixels, dtype=dt)
-
-		#print threshold_image.shape
 
 		gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+		cv2.imwrite('thresh_obstacles.jpg', gray_image)
 
 		contours, hierarchy = cv2.findContours(gray_image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -59,13 +53,15 @@ class ObjectTracker:
 			x,y,w,h = cv2.boundingRect(contours[i])
 			if w>10 and h>10:
 				print "hello"
-				cv2.rectangle(image,(x,y),(x+w,y+h),(0,0,255),2)
+				cv2.rectangle(image,(x,y),(x+w,y+h),(255,0,0),2)
 				rect = Rectangle()
 				rect.top_left = (x, y)
 				rect.top_right = (x+w, y)
 				rect.bottom_left = (x, y+h)
 				rect.bottom_right = (x+w, y+h)
 				object_rectangles.append(rect)
+
+		cv2.imwrite('obstacles_found.jpg', image)
 
 		cv2.imshow('image', image)
 		cv2.waitKey(0)

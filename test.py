@@ -3,15 +3,24 @@ import numpy as np
 
 from config import Config
 from object_tracker import ObjectTracker
+from frame_processor import FrameProcessor
 
 def test():
 
+
+
 	config = Config()
-	ot = ObjectTracker(config)
 
 	im = cv2.imread('obstacles.jpg')
 
-	ot.detect_obstacles(im)
+	fp = FrameProcessor(config)
+	undistorted_image = fp.undistort(im)
+
+	cv2.imwrite('undistorted_image.jpg', undistorted_image)
+
+	ot = ObjectTracker(config)
+
+	ot.detect_obstacles(undistorted_image)
 
 
 
