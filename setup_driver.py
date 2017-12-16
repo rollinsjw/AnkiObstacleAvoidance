@@ -5,15 +5,16 @@ from config import Config
 from histogram import HistogramBuilder
 
 def main():
+
+	config = Config()
 	
 	# Calibrate camera
-	calibrate()
-
+	calibrate(config)
+	
 	# Create and save histogram for obstacles
-	config = Config()
-	obstacle_image_name = ''
+	obstacle_image_names = ['']
 	hist_builder = HistogramBuilder()
-	hist = hist_builder.create_historgram(obstacle_image_name, config.get_obstacle_hist_bucket_size())
+	hist = hist_builder.create_historgram(obstacle_image_names, config.get_obstacle_hist_bucket_size())
 	np.savez(config.get_obstacle_hist_filename(), obstacle_histogram=hist)
 
 

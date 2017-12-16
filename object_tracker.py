@@ -3,19 +3,21 @@ import numpy as np
 
 import Image
 
+from rectangle import Rectangle
+
 class ObjectTracker:
 
-	def __init__(config):
+	def __init__(self, config):
 		obstacle_npz_file = np.load(config.get_obstacle_hist_filename() + ".npz")
 		self.obstacle_histogram = obstacle_npz_file['obstacle_histogram']
 		self.hist_bucket_size = config.get_obstacle_hist_bucket_size()
 		
-	def detect_cars(frame):
+	def detect_cars(self, frame):
 		gray_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		thresh_image = cv2.threshold(gray_image, 200, 255, cv2.THRESH_BINARY)[1]
 
 	
-	def detect_obstacles(frame):
+	def detect_obstacles(self, frame):
 
 		"""
 		:returns: list of lists where each sublist contains pixel coordinates of corners of min rectangle surrounding an obstacle
@@ -45,17 +47,25 @@ class ObjectTracker:
 
 		contours, hierarchy = cv2.findContours(image, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-		max_rectangle = (0, 0, 0 , 0)
+		object_rectangles = []
+		
 		for i in range(len(contours)):	
 			x,y,w,h = cv2.boundingRect(contours[i])
-			if w*h > max_rectangle[2]*max_rectangle[3]:
-				max_rectangle = (x, y, w, h)
+			if w>10 and h>10:
+				cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
+				rect = Rectangle()
+				rect.top_left = (x, y)
+				rect.top_right = (x+w, y)
+				rect.bottom_left = (x, y+h)
+				rect.bottom_right = (x+w, y+h)
+				object_rectangles.append(rect)
 
-		#x,y,w,h = max_rectangle
-		
-		#cv2.rectangle(original_image,(x,y),(x+w,y+h),(0,0,255),2)
+		cv2.imshow('image', original_image)
+		cv2.waitKey(0)
+		cv2.destroyAllWindows()
+				
 
-		return max_rectangle
+		return object_rectangles
 	
 
 
