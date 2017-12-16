@@ -12,9 +12,9 @@ class FrameProcessor:
 		self.camera_matrix = calibration_npz_file['camera_matrix']
 		self.distortion_coefficients = calibration_npz_file['distortion_coefficients']
 
-	def undistort(image)
+	def undistort(self, image):
 		undistorted_image = cv2.undistort(image, self.camera_matrix, self.distortion_coefficients)
 		return undistorted_image
 
-	def convert_pixels_to_meters():
+	def convert_pixels_to_meters(self):
 		pass
