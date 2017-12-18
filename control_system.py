@@ -1,9 +1,10 @@
 from Node import Node
 from State import State
 
+# TODO: if it hits an object, stop going down that branch
 # TODO: how do we handle turns when generating the next state?
+# TODO: add delay hyper parameter
 #hyperparamaters:
-    #manhattanDistanceToObstacles
     #numberOfIntervals
     #timeInterval
     #comfyDistanceToObstacle
@@ -17,9 +18,11 @@ class ControlSystem(object):
         self.manhattanDistanceToObstacle = manhattanDistanceToObstacle
         self.lanes = lanes
         self.comfyDistanceToObstacle = comfyDistanceToObstacle
+        self.collisionScore = -1000
 
     # initialize the tree
     def startTree(carState):
+        #initialize the root at time 0, with an empty controls array for time 0
         root = Node(0, [])
         root.addChild(generateChildren(root, carState, 0, []))
 
@@ -38,7 +41,11 @@ class ControlSystem(object):
             control = getControls(carState, futureCarState)
             controls.append(control)
             # score the current state
-            score = scoreCurrentState(carState, futureCarState)
+            score = scoreState(carState, futureCarState)
+            #this if statement should never be triggered
+            if score = self.collisionScore:
+                continue
+            score = score + parent.get_score()
             child = Node(score, controls)
             # add the reference to the new node
             child.addChildren(generateChild(child, futureCarState, layer + 1, controls))
@@ -54,7 +61,10 @@ class ControlSystem(object):
             #generate the controls that would be needed to make the change happen
             control = getControls(oldCarState, carState)
             controls.append(control)
-            score = scoreCurrentState(carState, futureCarState)
+            score = scoreState(carState, futureCarState)
+            if score = self.collisionScore:
+                continue
+            score = score + parent.get_score()
             child = Node(score, controls)
             children.append(child)
             parent.addChildren(generateChildren(carState, layer + 1, controls))
@@ -65,7 +75,7 @@ class ControlSystem(object):
     # TODO: finish the dynamics
     def getNextState(carState, lane):
         carState.set_currentLane(lane)
-        # TODO: use directionVector to calculate an estimate of where the car will be
+        # TODO: use directionVector and current speed to calculate an estimate of where the car will be
         position =
         carState.set_currentPosition()
 
@@ -76,20 +86,18 @@ class ControlSystem(object):
         else:
             return [futureState.get_currentLane]
 
-    def scoreCurrentState(previousState, carState, obstacles):
+    def scoreState(previousState, carState, obstacles):
         #check to see if we are too close to any obstacles
         score = 0
         if getObstaclesWithinDistance(obstacles, self.comfyDistanceToObstacle):
-            return -10000
+            return self.collisionScore
         #if we change lanes, penalize for the largest lane changes
         if previousState.get_currentLane != carState.get_currentLane:
             score = ((previousState.get_currentLane)^2 - (carSTate.get_currentLane)^2)*-1
 
 
-
-
-    #TODO: is calculating the euclidian distance only marginally slower?
     #TODO: calculate the distance from box
+    #TODO: changing speed for obstacle coming from behind
     #This function finds all of the obstacles within a certain distance to the car
     def getObstaclesWithinDistance(obstacles, distance):
         obstaclesWithinDistance = []
@@ -98,3 +106,22 @@ class ControlSystem(object):
             if(Math.sqrt(obstacle[0]^2 + obstacle[1]^2) > distance):
                 obstaclesWithinDistance.append(obstacle)
         return obstaclesWithinDistance
+
+    # @param the root of the tree to perform depthFirstSearch on
+    # returns the leaf of the tree with the highest score
+    def depthFirstSearch(node):
+        temp = []
+        if not node.get_children():
+            return node
+        for child in node.get_children():
+             # recursive step
+             temp.append(depthFirstSearch(child))
+        largest = temp[0]
+        for item in temp:
+            if largest.get_score < item.get_score():
+                largest  = item
+        return largest
+
+
+    # TODO write this
+    def findBestControl(leaves):

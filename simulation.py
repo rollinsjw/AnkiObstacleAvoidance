@@ -32,6 +32,7 @@ class Simulation:
 			undistorted_frame = self.undistortion.undistort(frame)
 
 			#TODO: call detect cars and detect obstacles from object tracking
+			#TODO: move the car forward x amount based on the latency from the cam
 			#TODO: use control to change state
 			#TODO: send anki commands
 			#TODO: convert to ego centric coordinates

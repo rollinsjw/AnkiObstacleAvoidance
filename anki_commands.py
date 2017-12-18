@@ -1,42 +1,42 @@
 import subprocess
 import shlex
-# p = subprocess
-# p.Popen(['git commit', '-m', "' hello"], shell=True)
-# p.Popen(['echo "hello"'], creationflags=1, shell=True)
-# process = subprocess.Popen(
-#     shlex.split(""" echo 'hello' """))
-# process.wait()
-# print (process.returncode)
-
-
-# def setSpeed(command):
-#     subprocess.call(command)
-# def setAccel(desiredAccel):
-#     subprocess.call()
-#
-#     Popen.communicate(input=None)
-# Interact with process: Send data to stdin. Read data from stdout and stderr, until end-of-file is reached. Wait for process to terminate. The optional input argument should be a string to be sent to the child process, or None, if no data should be sent to the child.
-#
-#
-#solution:
-#This launches a new terminal, we can then find the prcoess ID in ordre to send it new inputs while the program is running
-# subprocess.call(['gnome-terminal', '-x', 'python bb.py'])
-
-
-#ideas:
-#create a subprocess and communicate with it
-#open a gnome terminal
-#write a c script for each possible optional
-#   each script connects with the car and sends it a command
-#    Do I need to connect with it? or can I just send it commands
-#
+# TODO: make this more extensible, so n cars could be used
 class Anki:
 
     #instantiates the c programs the communicate with the cars
-    def __init__(carsMacs):
+    def __init__(carsMacs, mac1, mac2, laneChangeSpeed, laneChangeAcceleration):
+        # TODO: change the permissions of the file to avoid having to sudo?
+        # PaperNote: explain how to put this file in the correct location
+        command1 = ["sudo ~/anki/drive-sdk/build/dist/bin/vehicle-tool --adapter=hci0 --device=" + mac1]
+        command2 = ["sudo ~/anki/drive-sdk/build/dist/bin/vehicle-tool --adapter=hci0 --device=" + mac2]
+        self.car1 = subprocess.Popen(command1, stdout = subprocess.PIPE, stdin = subprocess.PIPE, shell=TRUE)
+        self.car2 = subprocess.Popen(command2, stdout = subprocess.PIPE, stdin = subprocess.PIPE, shell=TRUE)
+        self.car1.communicate(input="connect")
+        self.car2.communicate(input="connect")
+        #For now, I have laneChangeSpeed and laneChangeAcceleration set as constants so that the trajectory
+        #optimization has less variables to worry about
+        self.laneChangeSpeed = laneChangeSpeed
+        self.laneChangeAcceleration = laneChangeAcceleration
 
 
     #TODO: should we set a default acceleration?
-    def setSpeed(speed, acceleration):
+    #Set the speed of the car
+    #@param the car the speed change will be applied to
+    #@param the speed to change the car to
+    #@the acceleration at which to apply the change
+    def setSpeed(car, speed, acceleration):
+        car.communicate(input="set-speed " + speed " " + acceleration)
+    
+    #Shift lanes
+    #PaperNote: must start in the left lane to keep track of what lane we are in
+    #Change lanes
+    #@param the car to send the command to
+    #@param the lane change to be applied in integer form. Left is negative and right is possitive.
+    def changeLane(car, laneChange):
+        car.communicate(input="change-lane " + self.laneChangeSpeed + " " + self.laneChangeAcceleration + " " + laneChange)
 
-    def changeLane(lane):f
+    def get_car1():
+        return self.car1
+
+    def get_car2():
+        return self.car2
