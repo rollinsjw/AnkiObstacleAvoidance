@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index"],envversion:52,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{anki_command:[],autoclass:[],index:0,member:[],modul:0,page:0,search:0},titles:["Welcome to Obstacle Avoidance with Anki\u2019s documentation!"],titleterms:{anki:0,avoid:0,document:0,indic:0,obstacl:0,tabl:0,welcom:0}})
