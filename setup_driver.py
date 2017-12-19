@@ -12,7 +12,7 @@ def main():
 	calibrate(config)
 	
 	# Create and save histogram for obstacles
-	obstacle_image_names = ['obstacles_without_background.jpg']
+	obstacle_image_names = ['obstacles.jpg']
 	hist_builder = HistogramBuilder()
 	hist = hist_builder.create_histogram(obstacle_image_names, config.get_obstacle_hist_bucket_size())
 	np.savez(config.get_obstacle_hist_filename(), obstacle_histogram=hist)
