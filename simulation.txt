@@ -1,0 +1,25 @@
+controlSystem = control_system(hyperParameters)
+while 1 = 1:
+  stream = acquireStream();
+  globalObstacles = acquireLocationsOfObstacles(globalState);
+  cars = acquireLocationsOfCars();
+  for car in cars:
+    objectLocations = convertToEgoCentric(car, globalObstacles)
+    data={currentLane: 1, currentSpeed: 5, currentAcceleration: 0, isTurning: 0, carImFollowing: 0, objectLocations: objectLocations}
+    state = State(data)
+    root = controlSystem.startTree(state)
+    path = controlSystem.depthFirstSearch(root)
+    for control in path:
+      sendCommand(control)
+      pauseForLength(latencyPadding)
+
+
+
+
+    self.uid = data["carUID"]
+          self.currentLane = data["currentLane"]
+          self.currentSpeed = data["currentSpeed"]
+          self.currentAcceleration = data["currentAcceleration"]
+          self.isTurning = data["isTurning"]
+          self.carImFollowing = data["carImFollowing"]
+          self.objectLocations = data["objectLocations"]

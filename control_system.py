@@ -1,9 +1,6 @@
 from Node import Node
 from State import State
 
-# TODO: if it hits an object, stop going down that branch
-# TODO: how do we handle turns when generating the next state?
-# TODO: add delay hyper parameter
 #hyperparamaters:
     #numberOfIntervals
     #timeInterval
@@ -15,7 +12,7 @@ class ControlSystem(object):
         """
         Initialize an instance of ControlSystem with specified parameters
 
-        timeInterval:
+        timeInterval: the length of time for the steps in time
 
         numberOfIntervals: This is the maximum number of time intervals allowed
         and can be thought of as the depth of the tree.
