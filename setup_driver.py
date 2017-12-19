@@ -15,12 +15,6 @@ def main():
 	obstacle_image_names = ['obstacles_without_background.jpg']
 	hist_builder = HistogramBuilder()
 	hist = hist_builder.create_histogram(obstacle_image_names, config.get_obstacle_hist_bucket_size())
-
-	print hist
-
-	f = open("hist_text", "w")
-	f.write(hist)
-
 	np.savez(config.get_obstacle_hist_filename(), obstacle_histogram=hist)
 
 
