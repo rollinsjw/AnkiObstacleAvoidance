@@ -1,5 +1,5 @@
 
-### Set UP
+### Set Up
 
 1. Install Python 2.7 and OpenCV 2.4.9
 2. Print `pattern.png` and mount on cardboard
