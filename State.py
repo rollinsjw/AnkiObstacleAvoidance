@@ -2,6 +2,24 @@ class State:
     # this class is the state class, it is egocentric so it will be instantiated
     # for each item on the track
     def __init__(self, data):
+            """
+            uid is the unique id of the car
+
+            currentLane: the lane that the car resides in
+
+            currentSpeed: the current velocity of the vehicle
+
+            currentAcceleration: the current acceleration of the vehicle
+
+            isTurning: a boolean that represents whether the car is currently
+            turning or not
+
+            carImFollowing: the id of the car that this vehicle is following
+
+            objectLocations: the locations of other objects in the world,
+            These are put in egocentric terms
+
+            """
             self.uid = data["carUID"]
             self.currentLane = data["currentLane"]
             self.currentSpeed = data["currentSpeed"]
@@ -9,9 +27,6 @@ class State:
             self.isTurning = data["isTurning"]
             self.carImFollowing = data["carImFollowing"]
             self.objectLocations = data["objectLocations"]
-            self.isCar = data["isCar"]
-            self.currentPosition = data["currentPosition"]
-            self.directionVector = data["directionVector"]
 
     #TODO: function to get location of other objects relative to this object
 
