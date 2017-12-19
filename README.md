@@ -12,7 +12,7 @@ python setup_driver.py
 
 ### Run
 
-Run `simulation_driver.py'
+Run `simulation_driver.py`
 ```
 python simulation_driver.py
 ```
